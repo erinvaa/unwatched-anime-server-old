@@ -12,7 +12,12 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.route('/api/:user/watching').get((req, res) => {
   const username = req.params['user'];
 
-  url = 'https://myanimelist.net/animelist/daphoa/load.json?offset=0&status=1&order=1'
+  const malUrl1 = 'https://myanimelist.net/animelist/'
+  const malUrl2 = '/load.json?offset=0&status=1&order=1'
+
+  console.log("Got request for user watching", username);
+
+  url = malUrl1 + username + malUrl2
 
   request(url, function(error, response, html) {
     if (!error) {
